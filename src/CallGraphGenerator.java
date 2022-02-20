@@ -1,12 +1,6 @@
 package soot.jimple.toolkits.callgraph;
 
-import com.fasterxml.jackson.dataformat.csv.CsvParser;
 import soot.*;
-import soot.jimple.*;
-import soot.jimple.toolkits.callgraph.CHATransformer;
-import soot.jimple.toolkits.callgraph.CallGraph;
-import soot.jimple.toolkits.callgraph.Edge;
-import soot.jimple.toolkits.callgraph.Targets;
 import soot.options.Options;
 
 import java.io.FileWriter;
@@ -16,21 +10,48 @@ import java.util.*;
 import java.io.File;
 import java.io.IOException;
 
+// Import the classes under test
+import com.fasterxml.jackson.dataformat.csv.CsvParser;
 import com.fasterxml.jackson.dataformat.toml.TomlFactory;
-//import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator;
+import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator;
 
-public class CallGraphExample
+public class CallGraphGenerator
 {
 
     public static void main(String[] args) {
 
-        String targetPath = "/toml/target/classes"; // or "/csv/target/classes" or "/yaml/target/classes" etc
-        String outputPath = "TomlFactoryCallGraph.dot"; // or "YamlCallGraph.dot" etc.
+        // Program takes in three arguments.
+        // 1) The Target path which contains the built class files
+        // 2) The output path to generate the Call Graph in
+        // 3) The repo under test: either CSV, TOML, or YAML.
+        String targetPath = args[0];            // something like "/toml/target/classes"
+        String outputPath = args[1];            // something like "TomlFactoryCallGraph.dot"
+        String repo = args[2].toUpperCase();    // something like "TOML"
 
-        List<String> csvParserMethods = new ArrayList<String>();
-        for (Method method : TomlFactory.class.getDeclaredMethods()) { // Update [Class].class to the "Main" class
-            String name = method.getName();
-            csvParserMethods.add(name);
+        // Get the list of relevant methods for the class under test based on its repo
+        List<String> methodList = new ArrayList<String>();
+        switch (repo) {
+            case "CSV":
+                for (Method method : CsvParser.class.getDeclaredMethods()) {
+                    String name = method.getName();
+                    methodList.add(name);
+                }
+                break;
+            case "TOML":
+                for (Method method : TomlFactory.class.getDeclaredMethods()) {
+                    String name = method.getName();
+                    methodList.add(name);
+                }
+                break;
+            case "YAML":
+                for (Method method : YAMLGenerator.class.getDeclaredMethods()) {
+                    String name = method.getName();
+                    methodList.add(name);
+                }
+                break;
+            default:
+                System.out.println("Please insert a valid repo: CSV, TOML, YAML");
+                return;
         }
 
         // Soot classpath
@@ -38,16 +59,17 @@ public class CallGraphExample
 
         // Setting the classpath programatically
         Options.v().set_prepend_classpath(true);
-        Options.v().set_soot_classpath(classpath); //path
+        Options.v().set_soot_classpath(classpath);
         Options.v().set_allow_phantom_refs(true);
 
         args = new String[]{"-w", "-process-dir", classpath};
         Main.main(args);
 
+        // Generate Call Graph
         CallGraph cg = Scene.v().getCallGraph();
 
         try {
-            File myObj = new File(outputPath); // Update to output name
+            File myObj = new File(outputPath);
             myObj.createNewFile();
 
             // Set of edges in dot format
@@ -66,7 +88,7 @@ public class CallGraphExample
                 String tgtName = tgt.getName();
 
                 // Only if the methods are related to the class under test
-                if (csvParserMethods.contains(srcName) || csvParserMethods.contains(tgtName)) {
+                if (methodList.contains(srcName) || methodList.contains(tgtName)) {
                     if (!srcName.contains("$") && !tgtName.contains("$")) {
                         dotEdges.add("\t" + srcName + " -> " + tgtName + ";\n");
                     }
@@ -86,16 +108,9 @@ public class CallGraphExample
             log.write("}");
             log.close();
 
-            System.out.println("Dot Iter Size: " + dotEdges.size());
-
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
-
-
-        System.out.println("DONE");
-
     }
 }
