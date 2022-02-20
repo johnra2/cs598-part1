@@ -1,0 +1,17 @@
+com/fasterxml/jackson/dataformat/yaml/snakeyaml/error/Mark.class
+com/fasterxml/jackson/dataformat/yaml/YAMLMapper$Builder.class
+com/fasterxml/jackson/dataformat/yaml/YAMLGenerator.class
+com/fasterxml/jackson/dataformat/yaml/UTF8Reader.class
+com/fasterxml/jackson/dataformat/yaml/YAMLParser.class
+com/fasterxml/jackson/dataformat/yaml/util/StringQuotingChecker.class
+com/fasterxml/jackson/dataformat/yaml/YAMLGenerator$Feature.class
+com/fasterxml/jackson/dataformat/yaml/JacksonYAMLParseException.class
+com/fasterxml/jackson/dataformat/yaml/YAMLParser$Feature.class
+com/fasterxml/jackson/dataformat/yaml/util/StringQuotingChecker$Default.class
+com/fasterxml/jackson/dataformat/yaml/PackageVersion.class
+com/fasterxml/jackson/dataformat/yaml/snakeyaml/error/YAMLException.class
+com/fasterxml/jackson/dataformat/yaml/YAMLFactory.class
+com/fasterxml/jackson/dataformat/yaml/snakeyaml/error/MarkedYAMLException.class
+com/fasterxml/jackson/dataformat/yaml/UTF8Writer.class
+com/fasterxml/jackson/dataformat/yaml/YAMLFactoryBuilder.class
+com/fasterxml/jackson/dataformat/yaml/YAMLMapper.class
