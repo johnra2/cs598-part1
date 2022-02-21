@@ -130,11 +130,17 @@ try {
 }
 ```
 
-The Call graphs, dot file and svg image file, can be found in the respective repos under `CG`
+Here is the finished example for `CsvParser`, a class in jackson-dataformat-csv.
+![CSV_CG](/jackson-dataformats-csv/CG/CSVCallGraph.svg)
+
+
+The call graphs, dot file and svg image file, can be found in the respective repos under `CG`
 
 #### Abstact Syntax Trees
 Because the AST was not able to be generated using Soot, our team decided to use the JavaParser AST Inspector plugin in IntelliJ Idea. The steps for how they are producted are below:
 
+Here is the finished example for `CsvParser`, a class in jackson-dataformat-csv.
+![CSV_AST](/jackson-dataformats-csv/AST/CSVAST.svg)
 
 The file is exported to a `Custom Dot` File where the AST can be viewed in the respective repo under `AST`.
 
@@ -160,6 +166,10 @@ NOTE: These class files are the same files from step 2 of the Call Graph section
 ![CFG_step4b](/markdown_images/CFG_step4b.JPG)
 
 5. Repeat the above steps to create more Control-Flow Graphs on methods for the desired class
+
+
+Here is the finished example for the `writeEndArray` method in the `YAMLGenerator` class.
+![CSV_CFG](/jackson-dataformats-yaml/CFG/writeEndArray.svg)
 
 NOTE: The files will need to be put in the subdirectory `CFG` based on which class the process is done for: the `CsvParser` class for jackson-dataformat-csv repo, the `TomlFactory` class for the jackson-dataformat-toml repo, and the `YAMLGenerator` class for the jackson-dataformat-yaml.
 
