@@ -17,7 +17,7 @@ For example, calling `java AbstractSyntaxTreeGenerator.java /toml/target/classes
 
 After generating the `.dot` file, we used GraphViz to transform the data into into a `.svc` file for visual use.
 
-NOTE: This methodolgy only works for `CallGraphGenerator.java`. Abstract Syntax Trees and Control Flow Graphs are generated using alternative methods, we just wanted to link how they would have been done if Soot had worked properly for them in their respective java files.
+NOTE: This methodolgy only works for `CallGraphGenerator.java`. Abstract Syntax Trees and Control Flow Graphs are generated using alternative methods, we just wanted to link how they would have been done if Soot had worked properly for them in their respective java files `AbstractSyntaxTreeGenerator.java` and `ControlFlowGraphGenerator.java`, which both have partially functioning code but did not output satisfying graphs.
 
 #### Call Graphs
 The Call graphs were generated using Soot and all the code for this is in `cs598-part1/src/CallGraphGenerator.java`
@@ -130,19 +130,28 @@ try {
 }
 ```
 
+5. Use this dot file as input to GraphViz with `dot -Tsvg cg.dot > cg.svg`
+
 Here is the finished example for `CsvParser`, a class in jackson-dataformat-csv.
 ![CSV_CG](/jackson-dataformats-csv/CG/CSVCallGraph.svg)
 
 
 The call graphs, dot file and svg image file, can be found in the respective repos under `CG`
 
-#### Abstact Syntax Trees
-Because the AST was not able to be generated using Soot, our team decided to use the JavaParser AST Inspector plugin in IntelliJ Idea. The steps for how they are producted are below:
+#### Abstract Syntax Trees
+Because the AST was not able to be generated using Soot (see `AbstractSyntaxTreeGenerator.java` for our current partial code), our team decided to use the JavaParser AST Inspector plugin in IntelliJ Idea. The steps for how they are producted are below:
+
+1. Open up the appropriate class file in Intellij. 
+
+2. Open View > Tool Windows > JavaParser AST Inspector and click Parse to view the AST in a textual format.
+![AST_step2](/markdown_images/AST_step2.PNG)
+
+3. Export the AST to a `Custom Dot` File (this file can be viewed in the respective repo under `AST`). Use this dot file as input to GraphViz with `dot -Tsvg ast.dot > ast.svg`
 
 Here is the finished example for `CsvParser`, a class in jackson-dataformat-csv.
 ![CSV_AST](/jackson-dataformats-csv/AST/CSVAST.svg)
 
-The file is exported to a `Custom Dot` File where the AST can be viewed in the respective repo under `AST`.
+
 
 #### Control-Flow Graphs
 Because the Control-Flow Graph was not able to be generated using Soot, our team decided to use the online public website [code2flow](https://code2flow.com/). The steps to create a Control-Flow Graph are below:
