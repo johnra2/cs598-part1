@@ -142,22 +142,22 @@ The file is exported to a `Custom Dot` File where the AST can be viewed in the r
 Because the Control-Flow Graph was not able to be generated using Soot, our team decided to use the online public website [code2flow](https://code2flow.com/). The steps to create a Control-Flow Graph are below:
 
 1. Create a Draft after creating an account
-![CFG_step1](.\markdown_images\CFG_step1.JPG)
+![CFG_step1](/markdown_images/CFG_step1.JPG)
 
 2. Delete the Code in the left terminal to have an empty flowchart
-![CFG_step2a](.\markdown_images\CFG_step2a.JPG)
-![CFG_step2b](.\markdown_images\CFG_step2b.JPG)
+![CFG_step2a](/markdown_images/CFG_step2a.JPG)
+![CFG_step2b](/markdown_images/CFG_step2b.JPG)
 
 3. Paste the method from the desired class file you want to create the Control-Flow Graph for. For this example we will use the `writeEndArray` method in the `YAMLGenerator` class. 
 
 NOTE: These class files are the same files from step 2 of the Call Graph section.
 
-![CFG_step3](.\markdown_images\CFG_step3.JPG)
+![CFG_step3](/markdown_images/CFG_step3.JPG)
 
 4. Hit the Share button, then the Download tab, and then download the file as a SVG.
 
-![CFG_step4a](.\markdown_images\CFG_step4a.JPG)
-![CFG_step4b](.\markdown_images\CFG_step4b.JPG)
+![CFG_step4a](/markdown_images/CFG_step4a.JPG)
+![CFG_step4b](/markdown_images/CFG_step4b.JPG)
 
 5. Repeat the above steps to create more Control-Flow Graphs on methods for the desired class
 
