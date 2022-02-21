@@ -1,13 +1,13 @@
 # Milestone 1
 
-Our team went about using Soot to provide Static Analysis on 3 jackson-dataformats-text repos: jackson-dataformats-csv, jackson-dataformats-yaml, jackson-dataformats-toml. The jackson-dataformats-csv repo is used for reading and writing CSV data in the Jackson data format module. The jackson-dataformats-yaml is ised for reading and writing YAML encoded data. The jackson-dataformat toml repo is used fro reading and writing TOML files for the Jackson data format module. 
+Our team went about using Soot to provide Static Analysis on 3 jackson-dataformats-text repos: jackson-dataformats-csv, jackson-dataformats-yaml, jackson-dataformats-toml. The jackson-dataformats-csv repo is used for reading and writing CSV data in the Jackson data format module. The jackson-dataformats-yaml is used for reading and writing YAML encoded data. The jackson-dataformat toml repo is used for reading and writing TOML files for the Jackson data format module. 
 
 ## Process
 
 ### Identifying, Compiling, and Testing Repos
-In ordinance with the initial steps, our team found 10 repositiories that had over 50 stars and over 50 tests. 4 repos were directories from the PMD repo, 3 were directories from the jackson-dataformat-text repo, and the rest were commons repos from apache. These repos were compiled and tested, we spoke with the professor in OH and she told us no screenshots of this were needed.
+In ordinance with the initial steps, our team found 13 repositiories that had over 50 stars and over 50 tests. 4 repos were directories from the PMD repo, 3 were directories from the jackson-dataformat-text repo, and the rest were commons repos from apache. These repos were compiled and tested, we spoke with the professor in OH and she told us no screenshots of this were needed.
 
-With the new guidelines, were decided to further analyze the three jackson-dataformat repos, so you will find their graphs in their respective repos.
+With the new guidelines, we decided to further analyze the three jackson-dataformat repos, so you will find their graphs in their respective repos.
 
 ### Graph generating steps
 
@@ -20,7 +20,7 @@ After generating the `.dot` file, we used GraphViz to transform the data into in
 NOTE: This methodolgy only works for `CallGraphGenerator.java`. Abstract Syntax Trees and Control Flow Graphs are generated using alternative methods, we just wanted to link how they would have been done if Soot had worked properly for them in their respective java files `AbstractSyntaxTreeGenerator.java` and `ControlFlowGraphGenerator.java`, which both have partially functioning code but did not output satisfying graphs.
 
 #### Call Graphs
-The Call graphs were generated using Soot and all the code for this is in `cs598-part1/src/CallGraphGenerator.java`
+The Call Craphs were generated using Soot and all the code for this is in `cs598-part1/src/CallGraphGenerator.java`
 
 1. The arguments from the above command are captured as the `targetPath`, `outputPath`, and destination `repo`
 
@@ -34,7 +34,7 @@ String outputPath = args[1];            // something like "TomlFactoryCallGraph.
 String repo = args[2].toUpperCase();    // something like "TOML"
 ```
 
-2. All the relevant method names are retrieved and put into an arraylist based on what the value of `repo` is: `"CSV"` maps to the `CsvParser` class, `"TOML"` maps to the `TomlFactory` class, `"YAML"` maps to the `YAMLGenerator` class.
+2. All the relevant method names are retrieved and put into an List based on what the value of `repo` is: `"CSV"` maps to the `CsvParser` class, `"TOML"` maps to the `TomlFactory` class, and `"YAML"` maps to the `YAMLGenerator` class.
 
 ```java
 // Get the list of relevant methods for the class under test based on its repo
@@ -136,10 +136,10 @@ Here is the finished example for `CsvParser`, a class in jackson-dataformat-csv.
 ![CSV_CG](/jackson-dataformats-csv/CG/CSVCallGraph.svg)
 
 
-The call graphs, dot file and svg image file, can be found in the respective repos under `CG`
+The Call Graphs, dot file and svg image file, can be found in the respective repos under `CG`
 
 #### Abstract Syntax Trees
-Because the AST was not able to be generated using Soot (see `AbstractSyntaxTreeGenerator.java` for our current partial code), our team decided to use the JavaParser AST Inspector plugin in IntelliJ Idea. The steps for how they are producted are below:
+Because the AST was not able to be generated using Soot (see `AbstractSyntaxTreeGenerator.java` for our current partial code), our team decided to use the JavaParser AST Inspector plugin in IntelliJ Idea. The steps for how they are produced are below:
 
 1. Open up the appropriate class file in Intellij. 
 
@@ -154,9 +154,9 @@ Here is the finished example for `CsvParser`, a class in jackson-dataformat-csv.
 
 
 #### Control-Flow Graphs
-Because the Control-Flow Graph was not able to be generated using Soot, our team decided to use the online public website [code2flow](https://code2flow.com/). The steps to create a Control-Flow Graph are below:
+Because the Control-Flow Graph was not able to be generated using Soot (see `ControlFlowGraphGenerator.java`), our team decided to use the online public website [code2flow](https://code2flow.com/). The steps to create a Control-Flow Graph are below:
 
-1. Create a Draft after creating an account
+1. Create a draft after creating an account
 ![CFG_step1](/markdown_images/CFG_step1.JPG)
 
 2. Delete the Code in the left terminal to have an empty flowchart
