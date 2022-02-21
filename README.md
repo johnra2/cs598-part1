@@ -144,7 +144,7 @@ Because the AST was not able to be generated using Soot (see `AbstractSyntaxTree
 1. Open up the appropriate class file in Intellij. 
 
 2. Open View > Tool Windows > JavaParser AST Inspector and click Parse to view the AST in a textual format.
-![AST_step2](/markdown_images/AST_step2.PNG)
+![AST_step2](/markdown_images/AST_step2.png)
 
 3. Export the AST to a `Custom Dot` File (this file can be viewed in the respective repo under `AST`). Use this dot file as input to GraphViz with `dot -Tsvg ast.dot > ast.svg`
 
